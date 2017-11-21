@@ -4,9 +4,39 @@
     <script type="text/javascript">
         function calculate(arr) {
           var result = 0;
-          // TODO : ì—¬ê¸°ì— ì—¬ëŸ¬ë¶„ì´ ì§ì ‘ ì½”ë”©ì„ í•´ì£¼ì„¸ìš”.       
-          return result;
-        }
+          // TODO : ¿©±â¿¡ ¿©·¯ºĞÀÌ Á÷Á¢ ÄÚµùÀ» ÇØÁÖ¼¼¿ä.       
+ 		var chk = ''; 
+		for(i=0; i<arr.length; i++) { 
+  			if(typeof(arr[i]) == 'string') 
+  				chk = arr[i] 
+  			if(typeof(arr[i]) == 'number') { 
+  				if(chk != '')	 
+  					result = cal(result,chk,arr[i]); 
+  				else 
+  					result = arr[i]; 
+  			} 
+  		} 
+  			 
+            	return result; 
+          } 
+  	function cal(num,chk,num2) { 
+  		switch(chk) { 
+  			case '+': 
+  				num += num2; 
+  				break; 
+  			case '-': 
+  				num -= num2; 
+  				break; 
+  			case '*': 
+  				num *= num2; 
+  				break; 
+  			case '/': 
+  				num /= num2; 
+  			default: 
+  				console.log('»çÄ¢¿¬»ê °¡´É.'); 
+  		} 
+  		return num; 
+  	} 
 
         expect(calculate([1, '+', 2]), 3);
         expect(calculate([1, '-', 2]), -1);

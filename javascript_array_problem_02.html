@@ -3,9 +3,38 @@
 <head>
     <script type="text/javascript">
         function check_string() {
-          // TODO : ì—¬ê¸°ì— ì—¬ëŸ¬ë¶„ì´ ì§ì ‘ ì½”ë”©ì„ í•´ì£¼ì„¸ìš”.          
-          return true;
-        }
+          // TODO : ¿©±â¿¡ ¿©·¯ºĞÀÌ Á÷Á¢ ÄÚµùÀ» ÇØÁÖ¼¼¿ä.          
+            var parenthesesStack = new Array; 
+   
+            for(var i=0; i<arguments[0].length; i++){ 
+              var parentheses = arguments[0].charAt(i); 
+              //console.log("parentheses : " + parentheses); 
+              switch(parentheses){ 
+                case '(' : parenthesesStack.push(parentheses);  /*console.log("leftParentheses : " + parentheses);*/ break; 
+                case ')' : 
+                  if(parenthesesStack[0] == undefined){ 
+                    return false; 
+                  } 
+                  else{ 
+                    var leftParentheses = parenthesesStack.pop(); 
+                    //console.log("leftParenthesesPop : " + leftParentheses); 
+                    if( (leftParentheses == ')') && (parentheses != '(') ){ 
+                      return false; 
+                    } 
+                    else{ 
+                      break; 
+                    } 
+                  } 
+              } 
+            } 
+            //console.log(parenthesesStack[0]); 
+            if((parenthesesStack[0] == undefined)){ 
+              return true; 
+            } 
+            else{ 
+              return false; 
+            } 
+          } 
 
         expect(check_string('(())())'), false);
         expect(check_string('(((()())()'), false);
